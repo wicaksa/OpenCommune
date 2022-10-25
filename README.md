@@ -1,2 +1,13 @@
 # OpenCommune
-OpenCommune Project 
+The proposed project is a web application that will allow users to make and join private or public groups where they can put their belongings up and allow other users to borrow them for a certain period of time or trade their belongings outright.
+
+# Developers
+Matt Stoney <br />
+Paola Torres <br />
+Cheuk On Yim <br />
+Wicaksa Munajat <br />
+
+# Tech Stack
+Back End: Node.js, Express, Passport.js (authentication) <br />
+Front End: React. <br />
+Other: GitHub, VSCode. 
