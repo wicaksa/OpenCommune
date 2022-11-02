@@ -1,0 +1,25 @@
+{
+  "name": "open_commune",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wicaksa/OpenCommune.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wicaksa/OpenCommune/issues"
+  },
+  "homepage": "https://github.com/wicaksa/OpenCommune#readme",
+  "description": "",
+  "dependencies": {
+    "express": "4.18.2"
+  },
+
+  "proxy": "http://localhost:3001"
+}
