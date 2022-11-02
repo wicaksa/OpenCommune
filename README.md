@@ -11,3 +11,7 @@ Wicaksa Munajat <br />
 Back End: Node.js, Express, Passport.js (authentication) <br />
 Front End: React. <br />
 Other: GitHub, VSCode. 
+
+# How to run
+Front End : Go to client folder and type 'npm start' in the terminal. <br />
+Back End : Go to project folder and type 'npm start' in terminal.
