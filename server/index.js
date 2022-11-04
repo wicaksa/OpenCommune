@@ -6,6 +6,10 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
+// Simple Usage (Enable All CORS Requests)
+var cors = require('cors');
+app.use(cors());
+
 // Endpoints
 app.get("/api", (req, res) => {
     res.json({message:"Hello from server!"});
