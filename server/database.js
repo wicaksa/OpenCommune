@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 
-const sequelize = new Sequelize('opencommune', 'root', 'Phrygian145', {
+const sequelize = new Sequelize('opencommune', 'root', 'bantalkecil', {
     host: 'localhost',
     dialect: 'mysql',
     define: {
