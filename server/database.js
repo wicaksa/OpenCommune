@@ -1,7 +1,7 @@
 const { response } = require('express');
 const { Sequelize, DataTypes, Model } = require('sequelize');
 
-const sequelize = new Sequelize('opencommune', 'root', 'Csk27138944/', {
+const sequelize = new Sequelize('opencommune', 'root', '', {
     host: 'localhost',
     dialect: 'mysql',
     define: {
@@ -118,8 +118,6 @@ User.init({
     }
   }
 
-module.exports = {login, register, contact};
-
 class ListedItem extends Model {}
 
 ListedItem.init({
@@ -184,6 +182,87 @@ Network.init({
   modelName: 'Network',
   tableName: 'networks'
 })
+
+async function createNetwork(newNetwork, res) {
+  try {
+      const existingNetwork = await Network.findOne({ where: { networkname: networkname} })
+      const admin = await User.findOne({ where: { username: networkadmin }}) 
+      
+      if (existingNetwork) {
+          res.send("Network name already exists");
+      } else if (!admin) {
+          res.send("User does not exist");
+      } else {
+          await Network.create({
+              networkname : networkname,
+              networkadmin : admin.userid
+          }, {
+              fields: ['networkname', 'networkadmin']
+          })
+          res.send("Network created")
+      }
+
+  } catch(e) {
+      console.log(e)
+  }
+}
+
+async function deleteNetwork(toDelete, res) {
+  try {
+    const networkToDelete = await Network.findOne({ where: {networkname: networkname} })
+    
+    if (networkToDelete) {
+      await Network.destroy({
+        where : { 
+          networkname : networkToDelete.networkname,
+        }
+      });
+      res.send("Network deleted")
+    } else {
+      res.send("Network does not exist")
+    }
+  } catch(e) {
+      console.log(e)
+  }
+}
+
+async function editNetwork(update, res) {
+  try {
+    const networkToUpdate = await Network.findOne({ where: {networkname : networkname} })
+    
+    if (networkToUpdate) {
+      // TODO
+    }
+    
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+
+// WORK IN PROGRESS!
+async function joinNetwork(join, res) {
+  try {
+    const netenrollment = await Network.findOne({ where: {networkname : networkname} })
+    const userToEnroll = await User.findOne({ where: {username : user }})
+
+    if (!netenrollment) {
+      res.send("Network does not exist")
+    } else if (!userToEnroll) {
+      res.send("User does not exist")
+    } else {
+      await NetworkEnrollment.create({
+        networkid : netenrollment.networkid,
+        userid : userToEnroll.userid
+    }, {
+        fields: ['networkid', 'userid']
+    })
+    res.send("Network created")
+    }
+  } catch(e) {
+    console.log(e)
+  }
+}
 
 class PurchaseHistory extends Model {}
 
@@ -290,3 +369,5 @@ item = {
 deleteItem(item);
 createItem(item);
 getItem(5);
+
+module.exports = {login, register, contact, createNetwork, deleteNetwork, editNetwork, joinNetwork};

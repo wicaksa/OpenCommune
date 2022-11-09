@@ -48,6 +48,52 @@ app.get("/api", (req, res) => {
     res.json({message:"Hello from server!"});
 });
 
+// network endpoints 
+// TODO
+//  network/edit
+//  network/join
+
+// create network
+app.post("/network", (req, res) => {
+    networkname = req.body.networkname
+    networkadmin = req.body.networkadmin 
+
+    newNetwork = {networkname, networkadmin, res}
+
+    db.createNetwork(newNetwork, res)
+});
+
+// delete network
+app.delete("/network/delete", (req, res) => {
+    networkname = req.body.networkname 
+
+    toDelete = {networkname, res}
+
+    db.deleteNetwork(toDelete, res)
+});
+
+// edit network: network name and/or network admin
+app.put("/network/edit", (req, res) => {
+    networkname = req.body.networkname 
+    newNetworkname = req.body.newNetworkname 
+    currentAdmin = req.body.currentAdmin 
+    newAdmin = req.body.newAdmin 
+
+    update = {networkname, newNetworkname, currentAdmin, newAdmin, res}
+
+    db.editNetwork(update, res)
+});
+
+// join network
+app.post("/network/join", (req, res) => {
+    networkname = req.body.networkname
+    user = req.body.user
+
+    join = {networkname, user, res}
+
+    db.joinNetwork(join, res)
+});
+
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });
