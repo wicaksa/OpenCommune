@@ -1,18 +1,35 @@
 // server/index.js
-
-const express = require("express");
+const express = require('express');
 var cors = require('cors');
 
+// Database
+const db = require('./src/configs/database.js');
+
+// Test DB
+async function checkWorking() {
+    try {
+      await db.authenticate();
+      console.log('Connection has been established successfully.');
+    } catch (error) {
+      console.error('Unable to connect to the database:', error);
+    }
+  }
+  
+checkWorking();
+
+// Express 
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-const db = require('./database');
+app.listen(PORT, () => {
+    console.log(`Server listening on ${PORT}`);
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 // Simple Usage (Enable All CORS Requests)
 app.use(cors());
-
 
 //User's endpoint
 app.post("/user/register",(req, res) => {
@@ -48,53 +65,4 @@ app.get("/api", (req, res) => {
     res.json({message:"Hello from server!"});
 });
 
-// network endpoints 
-// TODO
-//  network/edit
-//  network/join
-
-// create network
-app.post("/network", (req, res) => {
-    networkname = req.body.networkname
-    networkadmin = req.body.networkadmin 
-
-    newNetwork = {networkname, networkadmin, res}
-
-    db.createNetwork(newNetwork, res)
-});
-
-// delete network
-app.delete("/network/delete", (req, res) => {
-    networkname = req.body.networkname 
-
-    toDelete = {networkname, res}
-
-    db.deleteNetwork(toDelete, res)
-});
-
-// edit network: network name and/or network admin
-app.put("/network/edit", (req, res) => {
-    networkname = req.body.networkname 
-    newNetworkname = req.body.newNetworkname 
-    currentAdmin = req.body.currentAdmin 
-    newAdmin = req.body.newAdmin 
-
-    update = {networkname, newNetworkname, currentAdmin, newAdmin, res}
-
-    db.editNetwork(update, res)
-});
-
-// join network
-app.post("/network/join", (req, res) => {
-    networkname = req.body.networkname
-    user = req.body.user
-
-    join = {networkname, user, res}
-
-    db.joinNetwork(join, res)
-});
-
-app.listen(PORT, () => {
-    console.log(`Server listening on ${PORT}`);
-});
 
