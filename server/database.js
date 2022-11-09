@@ -1,7 +1,7 @@
 const { response } = require('express');
 const { Sequelize, DataTypes, Model } = require('sequelize');
 
-const sequelize = new Sequelize('opencommune', 'root', 'Csk27138944/', {
+const sequelize = new Sequelize('opencommune', 'root', 'Phrygian145', {
     host: 'localhost',
     dialect: 'mysql',
     define: {
@@ -163,6 +163,89 @@ ListedItem.init({
   tableName: 'listeditems'
 })
 
+// This is just a simple query to get all users
+async function searchItem(itemname) {
+  try {
+      const items = await ListedItem.findAll({
+        where: {
+          itemname: itemname
+        }
+      //attributes: ['itemid', 'itemname']
+    });
+    console.log(items);
+    return items;
+  } catch(e) {
+    console.log(e);
+  }
+}
+
+async function getItemByID(itemid) {
+  try {
+    const item = await ListedItem.findByPk(5);
+    console.log(item);
+  } catch(e) {
+    console.log(e);
+  }
+}
+
+async function createItem(item) {
+  const { itemname, category, information, price, location, image, userlisted } = item;
+  try {
+    await ListedItem.create({
+      itemname: itemname,
+      category: category,
+      information: information,
+      price: price,
+      location: location,
+      image: image,
+      userlisted: userlisted
+    }, {
+      fields: ['itemname', 'category', 'information', 'price', 'location', 'image', 'userlisted']
+    })
+  } catch(e) {
+    console.log(e);
+  }
+}
+
+async function updateItem(item) {
+  const { itemid, itemname, category, information, price, location, image, userlisted } = item;
+
+  try {
+    await ListedItem.update({
+      itemname: itemname,
+      category: category,
+      information: information,
+      price: price,
+      location: location,
+      image: image,
+      userlisted: userlisted
+    }, {
+      where: {
+        itemid: itemid
+      }
+    })
+  } catch(e) {
+    console.log(e);
+  }
+}
+
+async function deleteItem(itemid, itemname, userlisted) {
+
+  try {
+    ListedItem.destroy({
+      where: {
+        itemid: itemid,
+        itemname: itemname,
+        userlisted: userlisted
+      }
+    });
+  } catch(e) {
+    res.send(e);
+  }
+}
+
+module.exports = { searchItem, getItemByID, createItem, updateItem, deleteItem }
+
 class Network extends Model {};
 
 Network.init({
@@ -219,63 +302,7 @@ PurchaseHistory.init({
   tableName: 'purchasehistory'
 })
 
-// This is just a simple query to get all users
-async function getItems() {
-  try {
 
-    const items = await ListedItem.findAll({
-      attributes: ['itemid', 'itemname']
-    });
-    console.log(items.every(item => item instanceof ListedItem));
-    console.log("All items: ", JSON.stringify(items, null, 2));
-  } catch(e) {
-    console.log(e);
-  }
-}
-
-async function getItem(itemid) {
-  try {
-    const item = await ListedItem.findByPk(5);
-    console.log(item);
-  } catch(e) {
-    console.log(e);
-  }
-}
-
-async function createItem(item) {
-  const { itemname, category, information, price, location, image, userlisted } = item;
-  try {
-    await ListedItem.create({
-      itemname: itemname,
-      category: category,
-      information: information,
-      price: price,
-      location: location,
-      image: image,
-      userlisted: userlisted
-    }, {
-      fields: ['itemname', 'category', 'information', 'price', 'location', 'image', 'userlisted']
-    })
-  } catch(e) {
-    console.log(e);
-  }
-}
-
-async function deleteItem(item) {
-  const { itemname, category, information, price, location, image, userlisted } = item;
-
-  ListedItem.destroy({
-    where: {
-      itemname: itemname,
-      category: category,
-      information: information,
-      price: price,
-      location: location,
-      image: image,
-      userlisted: userlisted
-    }
-  });
-}
 
 item = {
  itemname: "yeezy shoes",
@@ -286,7 +313,3 @@ item = {
  image: "https://images.stockx.com/images/Adidas-Yeezy-Boost-350-V2-Core-Black-Red-Product.jpg?fit=fill&bg=FFFFFF&w=1200&h=857&fm=webp&auto=compress&dpr=2&trim=color&updated_at=1606319240&q=75",
  userlisted: '76123458-5c8b-11ed-9b6a-0242ac120002'
 }
-
-deleteItem(item);
-createItem(item);
-getItem(5);

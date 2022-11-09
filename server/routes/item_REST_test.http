@@ -1,0 +1,40 @@
+GET http://localhost:3001/api
+
+###
+
+GET http://localhost:3001/item/search
+content-type: application/json
+
+{
+ "itemname": "yeezy shoes"
+
+}
+
+###
+
+PUT http://localhost:3001/item/edit
+content-type: application/json
+
+{                                   
+    "item": {
+            "itemid": 12,
+            "itemname": "air jordans",
+            "category": "clothing",
+            "information": "A pair of mint jordans",
+            "price": 5.00,
+            "location": "USA",
+            "image": "https://images.stockx.com/images/Adidas-Yeezy-Boost-350-V2-Core-Black-Red-Product.jpg?fit=fill&bg=FFFFFF&w=1200&h=857&fm=webp&auto=compress&dpr=2&trim=color&updated_at=1606319240&q=75",
+            "userlisted": "76123458-5c8b-11ed-9b6a-0242ac120002"
+        }
+}
+
+### 
+
+DELETE http://localhost:3001/item/delete 
+content-type: application/json
+
+{
+    "itemid": 12,
+    "itemname": "air jordans",
+    "userlisted": "76123458-5c8b-11ed-9b6a-0242ac120002"
+}

@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 const db = require('./database');
+const itemRouter = require('./routes/item-routes')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -42,6 +43,7 @@ app.post("/user/contact",(req, res) => {
     db.contact(userid, res)
 });
 
+app.use("/item", itemRouter);
 
 // Endpoints
 app.get("/api", (req, res) => {
