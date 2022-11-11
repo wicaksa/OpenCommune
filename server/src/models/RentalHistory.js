@@ -61,8 +61,4 @@ async function createRental(rental) {
   }
 };
 
-// Get Rental by ID
-
-
-
 module.exports = { RentalHistory, createRental };

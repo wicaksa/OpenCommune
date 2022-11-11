@@ -22,7 +22,6 @@ checkWorking();
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });
@@ -33,54 +32,9 @@ app.use(express.json());
 // Simple Usage (Enable All CORS Requests)
 app.use(cors());
 
-// Endpoints
-app.get("/api", (req, res) => {
-  res.json({message:"Hello from server!"});
-});
-
 // --------------------- Routes ------------------------------------------//
 // ListedItems Routes
 app.use('/listeditems', require('../server/src/routes/ListedItemRoute'));
 
 // Rental History Routes
 app.use('/rentalhistory', require('../server/src/routes/RentalHistoryRoute'));
-
-
-
-
-
-
-
-
-
-
-
-//User's endpoint
-app.post("/user/register",(req, res) => {
-
-    username = req.body.username
-    email = req.body.email
-    firstname = req.body.firstname
-    lastname = req.body.lastname
-    password = req.body.password
-        
-    newUser = {username, email, firstname, lastname, password}
-
-    msg = db.register(newUser, res)
-    
-});
-
-app.post("/user/login",(req, res) => {
-    username = req.body.username
-    password = req.body.password
-
-    db.login(username, password, res)
-});
-
-app.post("/user/contact",(req, res) => {
-    userid = req.body.userid
-
-    db.contact(userid, res)
-});
-
-
