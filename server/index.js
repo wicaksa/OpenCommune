@@ -1,6 +1,6 @@
 // server/index.js
 const express = require('express');
-var cors = require('cors');
+const cors = require('cors');
 
 // Database
 const db = require('./src/configs/database.js');
@@ -21,6 +21,7 @@ checkWorking();
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });
@@ -30,6 +31,16 @@ app.use(express.urlencoded({ extended: true }));
 
 // Simple Usage (Enable All CORS Requests)
 app.use(cors());
+
+// Endpoints
+app.get("/api", (req, res) => {
+  res.json({message:"Hello from server!"});
+});
+
+// ListedItems Routes
+app.use('/listeditems', require('../server/src/routes/ListedItemRoute'));
+
+
 
 //User's endpoint
 app.post("/user/register",(req, res) => {
@@ -57,12 +68,6 @@ app.post("/user/contact",(req, res) => {
     userid = req.body.userid
 
     db.contact(userid, res)
-});
-
-
-// Endpoints
-app.get("/api", (req, res) => {
-    res.json({message:"Hello from server!"});
 });
 
 

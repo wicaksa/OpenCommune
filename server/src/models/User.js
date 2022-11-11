@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../../database');
+const sequelize = require('../configs/database');
 
 // This is the User entity for the db
 class User extends Model{};
