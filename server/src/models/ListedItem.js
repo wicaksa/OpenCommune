@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../../database');
+const {Sequelize, DataTypes, Model} = require('sequelize');
+const sequelize = require('../configs/database');
 
 class ListedItem extends Model {};
 
@@ -7,7 +7,8 @@ ListedItem.init({
   itemid: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
-    primaryKey: true
+    primaryKey: true,
+    allowNull: false
 
   },
   itemname: {
@@ -28,7 +29,7 @@ ListedItem.init({
   },
   location: {
     type: DataTypes.STRING,
-    allowNull: false
+    
   },
   image: {
     type: DataTypes.STRING,
@@ -43,3 +44,7 @@ ListedItem.init({
   modelName: 'ListedItem',
   tableName: 'listeditems'
 });
+
+
+// Export the file 
+module.exports = ListedItem;
