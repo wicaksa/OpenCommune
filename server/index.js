@@ -1,6 +1,7 @@
 // server/index.js
 const express = require('express');
 const cors = require('cors');
+const bodyparser = require('body-parser');
 
 // Database
 const db = require('./src/configs/database.js');
@@ -26,8 +27,8 @@ app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });
 
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Simple Usage (Enable All CORS Requests)
 app.use(cors());
@@ -37,8 +38,20 @@ app.get("/api", (req, res) => {
   res.json({message:"Hello from server!"});
 });
 
+// --------------------- Routes ------------------------------------------//
 // ListedItems Routes
 app.use('/listeditems', require('../server/src/routes/ListedItemRoute'));
+
+// Rental History Routes
+app.use('/rentalhistory', require('../server/src/routes/RentalHistoryRoute'));
+
+
+
+
+
+
+
+
 
 
 
