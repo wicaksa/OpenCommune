@@ -36,7 +36,11 @@ app.use(cors());
 // ListedItems Routes
 app.use('/listeditems', require('../server/src/routes/ListedItemRoute'));
 
+// RentalHistory Route
+app.use('/rentalhistory', require('../server/src/routes/RentalHistoryRoute'));
 
+//User's Routes
+app.use('/user', require('../server/src/routes/UserRoute'));
 
 //User's endpoint
 app.post("/user/register",(req, res) => {
