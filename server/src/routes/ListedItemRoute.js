@@ -4,7 +4,7 @@ const db = require('../configs/database');
 const ListedItem = require('../models/ListedItem')
 
 // Test Route
-router.get('/', (req, res) => res.send('You should see this in your browser.'));
+router.get('/', (req, res) => res.send('Listed Item Test Route.'));
 
 // Get all listed items from the database. 
 router.get('/getallitems', (req, res) => 
@@ -57,9 +57,9 @@ router.get("/search",async (req, res) => {
 });
 
 router.post("/create", async (req, res) => {
-    const { itemname, category, information, price, location, image, userlisted } = req.body.item;
+    let { itemname, category, information, price, location, image, userlisted } = req.body;
 
-    item = {
+    const item = {
         itemname: itemname,
         category: category,
         information: information,
@@ -68,17 +68,20 @@ router.post("/create", async (req, res) => {
         image: image,
         userlisted: userlisted
     }
+
     try {
-        console.log(req.body)
+        console.log(item)
         const result = await ListedItem.createItem(item);
         console.log(result);
+        res.sendStatus(200); // 200 code
     } catch(e) {
         console.log(e);
+        res.sendStatus(404);
     }
 });
 
 router.put("/edit", async (req, res) => {
-    const { itemid, itemname, category, information, price, location, image, userlisted } = req.body.item;
+    const { itemid, itemname, category, information, price, location, image, userlisted } = req.body;
 
     item = {
         itemid: itemid,
@@ -94,8 +97,10 @@ router.put("/edit", async (req, res) => {
     try {
         const result = await ListedItem.updateItem(item)
         res.send(item)
+        res.sendStatus(200); // 200 code
     } catch(e) {
         console.log(e);
+        res.sendStatus(404);
     }
 });
 
@@ -107,5 +112,6 @@ router.delete("/delete", async (req, res) => {
         console.log(e);
     }
 });
+
 
 module.exports = router;
