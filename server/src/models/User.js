@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../../database');
+const { Sequelize, DataTypes, Model } = require('sequelize');
+const sequelize = require('../configs/database.js');
 
 // This is the User entity for the db
 class User extends Model{};
@@ -8,7 +8,8 @@ User.init({
   userid: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV1,
-    primaryKey: true
+    primaryKey: true,
+    allowNull: false 
   },
   username: {
     type: DataTypes.STRING,
@@ -35,3 +36,5 @@ User.init({
   modelName: 'User',
   tableName: 'users'
 });
+
+module.exports = User;
