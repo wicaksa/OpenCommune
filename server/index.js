@@ -41,33 +41,3 @@ app.use('/rentalhistory', require('../server/src/routes/RentalHistoryRoute'));
 
 //User's Routes
 app.use('/user', require('../server/src/routes/UserRoute'));
-
-//User's endpoint
-app.post("/user/register",(req, res) => {
-
-    username = req.body.username
-    email = req.body.email
-    firstname = req.body.firstname
-    lastname = req.body.lastname
-    password = req.body.password
-        
-    newUser = {username, email, firstname, lastname, password}
-
-    msg = db.register(newUser, res)
-    
-});
-
-app.post("/user/login",(req, res) => {
-    username = req.body.username
-    password = req.body.password
-
-    db.login(username, password, res)
-});
-
-app.post("/user/contact",(req, res) => {
-    userid = req.body.userid
-
-    db.contact(userid, res)
-});
-
-
