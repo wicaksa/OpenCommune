@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.listen(PORT, () => {
-    console.log(`Server listening on ${PORT}`);
+  console.log(`Server listening on ${PORT}`);
 });
 
 app.use(express.urlencoded({ extended: true }));
@@ -32,6 +32,10 @@ app.use(express.json());
 // Simple Usage (Enable All CORS Requests)
 app.use(cors());
 
+// network route
+const netRouter = require('./src/routes/network-routes') 
+
+app.use("/network", netRouter); 
 // --------------------- Routes ------------------------------------------//
 // ListedItems Routes
 app.use('/listeditems', require('../server/src/routes/ListedItemRoute'));
