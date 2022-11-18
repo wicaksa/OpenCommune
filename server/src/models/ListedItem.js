@@ -45,6 +45,42 @@ ListedItem.init({
   tableName: 'listeditems'
 });
 
+// ----- Methods ---- ///
+
+async function createItem(item) {
+  const { itemname, category, information, price, location, image, userlisted } = item;
+  try {
+    await ListedItem.create({
+      itemname: itemname,
+      category: category,
+      information: information,
+      price: price,
+      location: location,
+      image: image,
+      userlisted: userlisted
+    }, {
+      fields: ['itemname', 'category', 'information', 'price', 'location', 'image', 'userlisted']
+    })
+  } catch(e) {
+    console.log(e);
+  }
+}
+
+async function deleteItem(item) {
+  const { itemname, category, information, price, location, image, userlisted } = item;
+
+  ListedItem.destroy({
+    where: {
+      itemname: itemname,
+      category: category,
+      information: information,
+      price: price,
+      location: location,
+      image: image,
+      userlisted: userlisted
+    }
+  });
+}
 
 // Export the file 
-module.exports = ListedItem;
+module.exports = {ListedItem, createItem, deleteItem};

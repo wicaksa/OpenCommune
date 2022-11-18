@@ -8,5 +8,4 @@ module.exports = new Sequelize('opencommune', 'root', 'Csk27138944/', {
     define: {
       timestamps: false
     }
-  });
-
+});
