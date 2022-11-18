@@ -1,7 +1,6 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const sequelize = require('../configs/database.js');
 
-// This is the User entity for the db
 class User extends Model{};
 
 User.init({

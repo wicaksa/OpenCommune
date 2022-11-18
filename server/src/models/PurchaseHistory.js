@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../../database');
+const { Sequelize, DataTypes, Model } = require('sequelize');
+const sequelize = require('../configs/database');
 
 class PurchaseHistory extends Model {};
 
@@ -34,3 +34,5 @@ PurchaseHistory.init({
   modelName: 'PurchaseHistory',
   tableName: 'purchasehistory'
 });
+
+module.exports = PurchaseHistory;

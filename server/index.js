@@ -1,6 +1,7 @@
 // server/index.js
 const express = require('express');
-var cors = require('cors');
+const cors = require('cors');
+const bodyparser = require('body-parser');
 
 // Database
 const db = require('./src/configs/database.js');
@@ -25,8 +26,8 @@ app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Simple Usage (Enable All CORS Requests)
 app.use(cors());
@@ -35,3 +36,12 @@ app.use(cors());
 const netRouter = require('./src/routes/network-routes') 
 
 app.use("/network", netRouter); 
+// --------------------- Routes ------------------------------------------//
+// ListedItems Routes
+app.use('/listeditems', require('../server/src/routes/ListedItemRoute'));
+
+// RentalHistory Route
+app.use('/rentalhistory', require('../server/src/routes/RentalHistoryRoute'));
+
+//User's Routes
+app.use('/user', require('../server/src/routes/UserRoute'));

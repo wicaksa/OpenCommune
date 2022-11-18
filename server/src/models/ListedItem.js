@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../../database');
+const {Sequelize, DataTypes, Model} = require('sequelize');
+const sequelize = require('../configs/database');
 
 class ListedItem extends Model {};
 
@@ -7,7 +7,8 @@ ListedItem.init({
   itemid: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
-    primaryKey: true
+    primaryKey: true,
+    allowNull: false
 
   },
   itemname: {
@@ -28,7 +29,7 @@ ListedItem.init({
   },
   location: {
     type: DataTypes.STRING,
-    allowNull: false
+    
   },
   image: {
     type: DataTypes.STRING,
@@ -43,3 +44,43 @@ ListedItem.init({
   modelName: 'ListedItem',
   tableName: 'listeditems'
 });
+
+// ----- Methods ---- ///
+
+async function createItem(item) {
+  const { itemname, category, information, price, location, image, userlisted } = item;
+  try {
+    await ListedItem.create({
+      itemname: itemname,
+      category: category,
+      information: information,
+      price: price,
+      location: location,
+      image: image,
+      userlisted: userlisted
+    }, {
+      fields: ['itemname', 'category', 'information', 'price', 'location', 'image', 'userlisted']
+    })
+  } catch(e) {
+    console.log(e);
+  }
+}
+
+async function deleteItem(item) {
+  const { itemname, category, information, price, location, image, userlisted } = item;
+
+  ListedItem.destroy({
+    where: {
+      itemname: itemname,
+      category: category,
+      information: information,
+      price: price,
+      location: location,
+      image: image,
+      userlisted: userlisted
+    }
+  });
+}
+
+// Export the file 
+module.exports = {ListedItem, createItem, deleteItem};

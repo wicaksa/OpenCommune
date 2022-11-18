@@ -1,13 +1,14 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../../database');
+const {Sequelize, DataTypes, Model} = require('sequelize');
+const sequelize = require('../configs/database');
 
 class RentalHistory extends Model {};
 
 RentalHistory.init({
-  rentailid: {
+  rentalid: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
-    primaryKey: true
+    primaryKey: true,
+    allowNull: false
   },
   itemid: {
     type: DataTypes.INTEGER,
@@ -24,7 +25,7 @@ RentalHistory.init({
   daterented: {
     type: DataTypes.DATE
   },
-  dateoreturned: {
+  datetoreturn: {
     type: DataTypes.DATE
   },
   state: {
@@ -36,3 +37,28 @@ RentalHistory.init({
   modelName: 'RentalHistory',
   tableName: 'rentalhistory'
 });
+
+// ---------------- Class Methods ----------------------------// 
+
+// Create a new rental
+async function createRental(rental) {
+  const { daterented, datetoreturn, state, itemid, userlisted, renter } = rental; 
+  
+  try {
+    await RentalHistory.create( {
+        daterented: daterented, 
+        datetoreturn: datetoreturn, 
+        state: state, 
+        itemid: itemid,
+        userlisted: userlisted, 
+        renter:renter
+    }, {
+        fields: ['daterented', 'datetoreturn', 'state', 'itemid', 'userlisted', 'renter']
+    });
+  }
+  catch(e) {
+      console.log(e);
+  }
+};
+
+module.exports = { RentalHistory, createRental };
