@@ -21,7 +21,6 @@ Network.init({
     allowNull: false
   },
 }, {
-  freezeTableName: true,
   sequelize,
   modelName: 'Network',
   tableName: 'networks'
@@ -130,4 +129,5 @@ async function editNetwork(network) {
   }
 }
 
+module.exports = Network;
 module.exports = {Network, createNetwork, deleteNetwork, editNetwork};
