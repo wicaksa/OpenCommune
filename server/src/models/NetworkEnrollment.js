@@ -28,8 +28,8 @@ NetworkEnrollment.init({
 async function enrollInNetwork(network) {
   const { username, networkname } = network;
   const user = await User.findOne({ where: {username: username }})
-  const networkToEnroll = await Network.findOne({ where: {networkname: networkname }})
-
+  const networkToEnroll = await Network.Network.findOne({ where: {networkname: networkname }})
+  
   if (!user) {
     console.log("Cannot enroll. User does not exist.")
   } else if (!networkToEnroll) {

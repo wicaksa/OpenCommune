@@ -129,5 +129,4 @@ async function editNetwork(network) {
   }
 }
 
-module.exports = Network;
 module.exports = {Network, createNetwork, deleteNetwork, editNetwork};
