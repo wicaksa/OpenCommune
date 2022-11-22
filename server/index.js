@@ -32,10 +32,6 @@ app.use(express.json());
 // Simple Usage (Enable All CORS Requests)
 app.use(cors());
 
-// network route
-const netRouter = require('./src/routes/network-routes') 
-
-app.use("/network", netRouter); 
 // --------------------- Routes ------------------------------------------//
 // ListedItems Routes
 app.use('/listeditems', require('../server/src/routes/ListedItemRoute'));
@@ -45,3 +41,6 @@ app.use('/rentalhistory', require('../server/src/routes/RentalHistoryRoute'));
 
 //User's Routes
 app.use('/user', require('../server/src/routes/UserRoute'));
+
+// Network routes
+app.use("/network", require('./src/routes/network-routes')); 

@@ -21,7 +21,6 @@ Network.init({
     allowNull: false
   },
 }, {
-  freezeTableName: true,
   sequelize,
   modelName: 'Network',
   tableName: 'networks'
