@@ -112,9 +112,9 @@ router.post("/login", async(req, res) => {
 	  const user = await User.findOne({ where: { username: username } })
 
 		if((user.password).localeCompare(password)==0){  
-			res.send("Login successful!")
+			res.send(user.userid)
 		}else{
-			res.send("Invalid login information.")
+			res.send("Invalid username or password")
 		}
 	
 	} catch(e) {
