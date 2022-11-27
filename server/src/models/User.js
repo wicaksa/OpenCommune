@@ -8,6 +8,7 @@ User.init({
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV1,
     primaryKey: true,
+    autoIncrement:true,
     allowNull: false 
   },
   username: {
