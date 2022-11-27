@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 
  export default function AddNetwork () {
     const [networkName, setNetworkName] = useState('');
+    const [adminName, setAdminName] = useState('');
 
     const test = async () => {
         //Fetch Data From API]og(error)
@@ -17,46 +18,40 @@ import { toast } from 'react-toastify';
     }
 
     const getUser = () => {
-        Axios.get('user/search', {
+        
+        console.log(localStorage.getItem("userid"))
+        let body ={
             data: {
                 userid: localStorage.getItem("userid")
-            }
-        }).then( function (response) {
-            console.log(response)
+            }}
+            
+        let parsedBody = JSON.stringify(body);
+        console.log("parsed body: " + parsedBody)
+        let str = parsedBody.replace(/\\"/g, "")
+
+
+        console.log(str)
+            
+        let newBody = JSON.parse(str)
+        console.log(newBody)
+        Axios.post("/user/search", newBody
+        ).then( function (response) {
+            setAdminName(response.data.username);
         }).catch( function (error) {
             console.log(error)
         })
 
-        //Fetch Data From API]og(error)
-        // let body = {"userid": localStorage.getItem("userid")};
-        // console.log(body);
-
-        // let parsedBody = JSON.stringify(body);
-        // console.log("parsed body: " + parsedBody)
-
-        // let str = parsedBody.replace(/\\"/g, "")
-        // console.log(str)
-
-        // let newBody = JSON.parse(str)
-        // console.log(newBody)
-        
-        // Axios.get('User/search', {newBody
-        //     }).then(function(response){
-        //         console.log(response.data)
-        //     }).catch(function (error) {
-        //     console.log(error)});
     }
 
     const addNetwork = () => {
         // console.log(localStorage.getItem("userid"));
-        Axios.post('http://localhost:3001/network/create',
+        Axios.post('/network/create',
                 {
                     "networkname" : networkName,
-                    "networkadmin" : localStorage.getItem("username")
+                    "networkadmin" : adminName
                 
             }).then((response) => {
-            console.log(getUser() + "getuser");
-            console.log(response + "response");
+
             if (response.status===200) {
                 toast.success(response.data, {
                     position: toast.POSITION.TOP_CENTER
@@ -82,7 +77,7 @@ import { toast } from 'react-toastify';
                                 <input class="form-control form-control-sm" placeholder="Add Network Name" onChange={(e)=>{ setNetworkName(e.target.value);}}></input>
                             </td>
                             <td>
-                                <button onClick={getUser}>Add Network</button>
+                                <button onClick={addNetwork}>Add Network</button>
                             </td>
                         </tr>
                     </tbody>
