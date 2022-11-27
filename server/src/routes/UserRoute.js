@@ -41,7 +41,7 @@ router.post("/create", async(req, res) => {
 
 router.post("/search", async(req, res) => {
 
-	const {userid} = req.body;
+	const {userid} = req.body.data;
 	console.log(userid);
 
 	try {
