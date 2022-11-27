@@ -1,0 +1,6 @@
+POST http://localhost:3001/user/search
+Content-Type: application/json
+
+{
+    "userid": "7612258a-5c8b-11ed-9b6a-0242ac120002"
+}

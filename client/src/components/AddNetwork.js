@@ -4,27 +4,29 @@ import { toast } from 'react-toastify';
 
 const AddNetwork = () => {
     const [networkName, setNetworkName] = useState('');
-    // const [networkAdmin, setNetworkAdmin] = useState();
+    const [networkAdmin, setNetworkAdmin] = useState('');
 
-    const getUser = () => {
-        //Fetch Data From API
+    
+
+
+    async function getUser() {    
         const id = localStorage.getItem("userid");
-        console.log(id)
-        Axios.get("http://localhost:3001/user/search", {
-            params:
+                
+    try{
+        const response = await Axios.post("http://localhost:3001/user/search", {
+            data:
                 {
-                    userid: localStorage.getItem("userid")
-                }
-        }).then(function(response){
-            console.log(response)
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-        .then(function () {
-            console.log("done")
-        });
+                    userid: "76122936-5c8b-11ed-9b6a-0242ac120002"
+                },
+                xsrfHeaderName: "X-CSRFToken",
+                withCredentials: false,
+            })
+        } catch(e) {
+            console.log(e);
+        }
     }
+        
+    
 
     const addNetwork = () => {
         // console.log(localStorage.getItem("userid"));

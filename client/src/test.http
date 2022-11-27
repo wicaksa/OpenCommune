@@ -1,0 +1,10 @@
+GET http://localhost:3001/listeditems
+
+###
+GET http://localhost:3001/user/search
+content-type: application/json
+
+{
+    "userid": "76122936-5c8b-11ed-9b6a-0242ac120002"
+}
+

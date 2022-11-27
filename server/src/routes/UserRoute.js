@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const db = require('../configs/database');
 const User = require('../models/User')
+const cors = require('cors');
 
+router.use(cors());
 // Test Route
 router.get('/', (req, res) => res.send('User Route'));
 
@@ -39,13 +41,13 @@ router.post("/create", async(req, res) => {
 	
 });
 
-router.get("/search", async(req, res) => {
-
-	const {userid} = req.body
+router.post("/search", async(req, res) => {
+	console.log("request received");
+	const {userid} = req.body.data;
 
 	try {
 
-	  const user = await User.findOne({ where: { userid: userid } })
+	  const user = await User.findOne({ where: { "userid": userid } })
 	  
 	  if(user){
 		res.send(user)
