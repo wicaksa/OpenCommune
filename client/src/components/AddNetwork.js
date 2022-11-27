@@ -1,29 +1,50 @@
-import Axios from 'axios';
+import Axios from '../axios.js';
 import React, { useState, setState} from 'react';
 import { toast } from 'react-toastify';
 
-const AddNetwork = () => {
+ export default function AddNetwork () {
     const [networkName, setNetworkName] = useState('');
-    // const [networkAdmin, setNetworkAdmin] = useState();
+
+    const test = async () => {
+        //Fetch Data From API]og(error)
+        // console.log(localStorage.getItem("userid"));
+        
+        await Axios.get('RentalHistory/getAllRentals'
+            ).then(function(response){
+                console.log(response)
+            }).catch(function (error) {
+            console.log(error)})
+    }
 
     const getUser = () => {
-        //Fetch Data From API
-        const id = localStorage.getItem("userid");
-        console.log(id)
-        Axios.get("http://localhost:3001/user/search", {
-            params:
-                {
-                    userid: localStorage.getItem("userid")
-                }
-        }).then(function(response){
+        Axios.get('user/search', {
+            data: {
+                userid: localStorage.getItem("userid")
+            }
+        }).then( function (response) {
             console.log(response)
+        }).catch( function (error) {
+            console.log(error)
         })
-        .catch(function (error) {
-            console.log(error);
-        })
-        .then(function () {
-            console.log("done")
-        });
+
+        //Fetch Data From API]og(error)
+        // let body = {"userid": localStorage.getItem("userid")};
+        // console.log(body);
+
+        // let parsedBody = JSON.stringify(body);
+        // console.log("parsed body: " + parsedBody)
+
+        // let str = parsedBody.replace(/\\"/g, "")
+        // console.log(str)
+
+        // let newBody = JSON.parse(str)
+        // console.log(newBody)
+        
+        // Axios.get('User/search', {newBody
+        //     }).then(function(response){
+        //         console.log(response.data)
+        //     }).catch(function (error) {
+        //     console.log(error)});
     }
 
     const addNetwork = () => {
@@ -31,7 +52,7 @@ const AddNetwork = () => {
         Axios.post('http://localhost:3001/network/create',
                 {
                     "networkname" : networkName,
-                    "networkadmin" : "js0001"
+                    "networkadmin" : localStorage.getItem("username")
                 
             }).then((response) => {
             console.log(getUser() + "getuser");
@@ -69,5 +90,3 @@ const AddNetwork = () => {
             </div>
         )
 }
-
-export default AddNetwork;

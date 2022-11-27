@@ -39,9 +39,10 @@ router.post("/create", async(req, res) => {
 	
 });
 
-router.get("/search", async(req, res) => {
+router.post("/search", async(req, res) => {
 
-	const {userid} = req.body
+	const {userid} = req.body;
+	console.log(userid);
 
 	try {
 
