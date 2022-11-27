@@ -14,6 +14,7 @@ router.post("/create", async (req, res) => {
 
     try {
         const result = await nt.createNetwork(network);
+        console.log(result);
         res.sendStatus(200);
     } catch(e) {
         console.log(e)
@@ -67,5 +68,14 @@ router.post("/enroll", async (req, res) => {
         console.log(e);
     }
 });
+
+// Get all listed items from the database. 
+router.get('/getallnetworks', (req, res) => 
+    nt.Network.findAll()
+        .then(i => {
+            console.log(i);
+            res.send(i);
+        })
+        .catch(err => console.log(err)));
 
 module.exports = router;
