@@ -5,6 +5,7 @@ import AddNetwork from '../components/AddNetwork';
 import Banner from '../components/Banner';
 import DisplayTable from '../components/DisplayTable';
 import Navbar from '../components/Navbar';
+import LogoutButton from '../components/LogoutButton';
 
 const MyNetworks = () => {
     // Protect the MyNetworks page.
@@ -25,6 +26,7 @@ const MyNetworks = () => {
         return (
             <div>
                 <div>
+                    <LogoutButton />
                     <Banner />
                     <Navbar />  
                     <DisplayTable />
