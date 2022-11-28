@@ -1,4 +1,5 @@
 import React, {useState, setState } from 'react';
+import AddItem from './AddItem';
 
 class ItemsTable extends React.Component {
     constructor(props) {
@@ -27,6 +28,10 @@ class ItemsTable extends React.Component {
                 <tr key={items.itemid}>
                     <td>{items.itemid}</td>
                     <td>{items.itemname}</td>
+                    <td>{items.category}</td>
+                    <td>{items.information}</td>
+                    <td>{items.price}</td>
+                    <td>{items.location}</td>
                 </tr>
             )
         })
@@ -37,11 +42,17 @@ class ItemsTable extends React.Component {
                     <thread>
                         <tr>
                             <th>Items</th>
+                            <th><button onClick={AddItem}>Add Item</button></th>
                             <th></th>
                         </tr>
                         <tr>
                             <th>Item ID</th>
                             <th>Name</th>
+                            <th>Category</th>
+                            <th>Information</th>
+                            <th>Price</th>
+                            <th>Location</th>
+                            <th>Owner</th>
                         </tr>
                     </thread>
                     <tbody>

@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import MyNetworks from './pages/MyNetworks';
 import ItemsInNetwork from './pages/ItemsInNetwork';
+import AddItem from './components/AddItem';
 import { useNavigate, Link, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -31,7 +32,8 @@ function App() {
         <Route path="/login" element={<Login />}  />
         <Route path="/signup" element={<SignUp />}  />
         <Route path="/mynetworks" element={<MyNetworks />} />
-        <Route path="/itemsinnetwork" element={<ItemsInNetwork/>}/>
+        <Route path="/itemsinnetwork" element={<ItemsInNetwork />} />
+        <Route path="/addItem" element={<AddItem />} />
       </Routes>
     </>
 
