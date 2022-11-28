@@ -1,4 +1,5 @@
 import React, {useState, setState} from 'react';
+import ItemsInNetwork from '../pages/ItemsInNetwork';
 
 class DisplayTable extends React.Component {
     constructor(props) {
@@ -28,6 +29,7 @@ class DisplayTable extends React.Component {
                 <tr key={item.networkid}>
                     <td>{item.networkid}</td>
                     <td> {item.networkname}</td>
+                    <td><input type="button" onClick={ItemsInNetwork} value="View Items"/></td>
                 </tr>
             )
         })
