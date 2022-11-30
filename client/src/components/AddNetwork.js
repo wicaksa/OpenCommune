@@ -1,34 +1,22 @@
 import Axios from '../axios.js';
-import React, { useState, setState} from 'react';
+import React, { useState} from 'react';
 import { toast } from 'react-toastify';
 
  export default function AddNetwork () {
     const [networkName, setNetworkName] = useState('');
     const [adminName, setAdminName] = useState('');
 
-    const test = async () => {
-        //Fetch Data From API]og(error)
-        // console.log(localStorage.getItem("userid"));
-        
-        await Axios.get('RentalHistory/getAllRentals'
-            ).then(function(response){
-                console.log(response)
-            }).catch(function (error) {
-            console.log(error)})
-    }
-
     const getUser = () => {
         
-        console.log(localStorage.getItem("userid"))
-        let body ={
-            data: {
-                userid: localStorage.getItem("userid")
-            }}
+        console.log(localStorage.getItem("userid"));
+
+        let body ={ data: { userid: localStorage.getItem("userid")}};
             
         let parsedBody = JSON.stringify(body);
-        console.log("parsed body: " + parsedBody)
-        let str = parsedBody.replace(/\\"/g, "")
 
+        console.log("parsed body: " + parsedBody)
+
+        let str = parsedBody.replace(/\\"/g, "")
 
         console.log(str)
             
@@ -40,16 +28,13 @@ import { toast } from 'react-toastify';
         }).catch( function (error) {
             console.log(error)
         })
-
     }
 
     const addNetwork = () => {
-        // console.log(localStorage.getItem("userid"));
         Axios.post('/network/create',
                 {
                     "networkname" : networkName,
                     "networkadmin" : adminName
-                
             }).then((response) => {
 
             if (response.status===200) {

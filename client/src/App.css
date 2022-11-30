@@ -1,6 +1,7 @@
 .App {
   text-align: center;
 }
+
 .top-banner {
   background-color: #000;
   display:flex;
@@ -32,7 +33,7 @@ ul {
 }
 
 li {
-  float: left;
+  display:inline-block;
 }
 
 li a {
