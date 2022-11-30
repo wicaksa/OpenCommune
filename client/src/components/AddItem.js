@@ -1,6 +1,7 @@
 import Axios from '../axios.js';
 import React, { useState, setState } from 'react';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddItem() {
     const [itemname, setItemName] = useState('');
@@ -31,6 +32,10 @@ export default function AddItem() {
                 });
             }
         })
+    }
+    const navigate = useNavigate();
+    const navigateToAddItem = () => {
+        navigate('/addItem');
     }
 
     return (

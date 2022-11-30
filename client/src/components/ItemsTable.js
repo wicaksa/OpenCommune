@@ -32,6 +32,8 @@ class ItemsTable extends React.Component {
                     <td>{items.information}</td>
                     <td>{items.price}</td>
                     <td>{items.location}</td>
+                    <td>{items.image}</td>
+                    <td><button> Edit Item </button></td>
                 </tr>
             )
         })
@@ -42,17 +44,11 @@ class ItemsTable extends React.Component {
                     <thread>
                         <tr>
                             <th>Items</th>
-                            <th><button onClick={AddItem}>Add Item</button></th>
+                            <th><button onClick={AddItem.navigateToAddItem}>Add Item</button></th>
                             <th></th>
                         </tr>
                         <tr>
-                            <th>Item ID</th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Information</th>
-                            <th>Price</th>
-                            <th>Location</th>
-                            <th>Owner</th>
+                            <th>Item ID</th>            
                         </tr>
                     </thread>
                     <tbody>
