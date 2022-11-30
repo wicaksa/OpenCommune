@@ -8,9 +8,10 @@ router.get('/', (req, res) => res.send('Listed Item Test Route.'));
 
 // Get all listed items from the database. 
 router.get('/getallitems', (req, res) => 
-    ListedItem.findAll()
+    ListedItem.ListedItem.findAll()
         .then(listeditems => {
             console.log(listeditems);
+            res.send(listeditems);
             res.sendStatus(200);
         })
         .catch(err => console.log(err)));
