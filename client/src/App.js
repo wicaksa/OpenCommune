@@ -9,6 +9,7 @@ import MyNetworks from './pages/MyNetworks';
 import ItemsInNetwork from './pages/ItemsInNetwork';
 import AddItem from './components/AddItem';
 import { useNavigate, Link, Route, Routes } from 'react-router-dom';
+import NavbarHomePage from './components/NavbarHomePage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -17,15 +18,9 @@ function App() {
 
   return( 
     <>
-    <nav>
-      <ul>
-          <button onClick={() => {navigate("/login");}}> Login </button>
-          <button onClick={() => {navigate("/signup");}}> Sign Up </button>
-      </ul>
-      </nav>
       <div className="App">
         <Banner />
-        <Navbar />
+        <NavbarHomePage/>
         <AboutBlurb />
       </div>
       <Routes>

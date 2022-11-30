@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Banner from '../components/Banner';
-import '../styles/styles.css';
+import '../App.css';
 
 const Login = () => {
     const [usernameReg, setUsernameReg] = useState('')
@@ -56,14 +56,6 @@ const Login = () => {
                 <input type="submit" class="submit" id="login" value="Login" onClick={login}></input>
            
         </div>
-        {/* <h3>Login</h3>
-        
-                <label>Username</label>
-                <input type="text" onChange={(e)=>{ setUsernameReg(e.target.value);}}/>
-                <label>Password</label>
-                <input type="text" onChange={(e)=>{ setPasswordReg(e.target.value);}}/>
-                <button onClick={login}> Login </button>
-                <ToastContainer autoClose={1500} />  */}
     </div>
     );
 };
