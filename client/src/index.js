@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import MyNetworks from './pages/MyNetworks';
+import ItemsInNetwork from './pages/ItemsInNetwork';
+import AddItem from './components/AddItem';
 const axios = require('axios');
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -27,6 +29,8 @@ root.render(
         <Route path="/login" element={<Login />}  />
         <Route path="/signup" element={<SignUp />}  />
         <Route path="/mynetworks" element={<MyNetworks />} />
+        <Route path="/itemsinnetwork" element={<ItemsInNetwork />} />
+        <Route path="/addItem" element={<AddItem />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
