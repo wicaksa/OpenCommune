@@ -9,6 +9,8 @@ import SignUp from './pages/SignUp';
 import MyNetworks from './pages/MyNetworks';
 import ItemsInNetwork from './pages/ItemsInNetwork';
 import AddItem from './components/AddItem';
+import ViewItem from './components/ViewItem';
+import FrontPage from './pages/FrontPage';
 const axios = require('axios');
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -25,12 +27,16 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route index element = {<App />} />
+        <Route path="/" element = {<App />}>
+          <Route index element={<FrontPage />} />
+          <Route path="viewitem" element={<ViewItem />} />
+        </Route>
         <Route path="/login" element={<Login />}  />
         <Route path="/signup" element={<SignUp />}  />
         <Route path="/mynetworks" element={<MyNetworks />} />
         <Route path="/itemsinnetwork" element={<ItemsInNetwork />} />
         <Route path="/addItem" element={<AddItem />} />
+        <Route path="/viewitem" element={<ViewItem />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
