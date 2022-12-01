@@ -92,3 +92,90 @@ input.submit:hover {
   -moz-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
 }
+
+.justify-content-center {
+  text-align: center;
+  /* float: none;
+  position: absolute;
+  top: 50%;
+  left: 50%; */
+}
+
+
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+
+.card
+ {
+ border: 1px solid black;
+ height: 300px;
+ margin: 25px 25px 25px 25px;
+ width: 180px;
+ float: left;
+ background-color: white;
+
+ border-radius: 10px; 
+
+ 
+ }
+
+.cardImage {
+  height: "500px";
+  width:"100%"; 
+  padding: "8px"; 
+  border-bottom: "1px solid lightgray";
+  object-fit:"cover"
+}
+
+ .right-container{
+ 
+  margin-left: 100px;
+  padding-left: 190px;
+  display: flex; 
+  flex-wrap: wrap;
+  align-items: center;
+ }
+
+ .cardrow {
+  background-color: #ededed;
+  margin: auto;
+  padding: 32px;
+  border: 1px solid darkgray;
+  max-width: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  
+ }
+
+.about-blurb {
+  padding-top: 30px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.about-blurb h4 {
+  margin: 20px;
+  font-size: 2em;
+  font-style: bold;
+}
+
+ .about-div {
+  width: 50%;
+  font-size: 2em;
+  margin: 40px auto;
+ }
