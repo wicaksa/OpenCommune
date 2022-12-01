@@ -1,5 +1,6 @@
 import React, {useState, setState } from 'react';
 import AddItem from './AddItem';
+import Axios from 'axios';
 
 class ItemsTable extends React.Component {
     constructor(props) {
@@ -12,14 +13,22 @@ class ItemsTable extends React.Component {
     }
 
     createItemList() {
-        fetch("http://localhost:3001/listeditems/getallitems").then(
-            (response) => response.json()
-        ).then((data) => {
-            console.log(data);
-            this.setState({
-                list:data
-            })
+        // fetch("http://localhost:3001/listeditems/getallitems").then(
+        //     (response) => response.json()
+        // ).then((data) => {
+        //     console.log(data);
+        //     this.setState({
+        //         list:data
+        //     })
+        // })
+        Axios.post('http://localhost:3001/listeditems/itemsinnetwork', {"networkid": this.props.networkid}).then(
+            (response) =>{
+                    console.log(response.data);
+                    this.setState({
+                        list:response.data
+                    })
         })
+        
     }
 
     render() {

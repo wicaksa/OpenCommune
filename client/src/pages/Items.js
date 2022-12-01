@@ -23,7 +23,6 @@ const Items = () => {
         return (
             <div>
                 <div>
-                    <LogoutButton/>
                     <Banner/>
                     <Navbar/>
                     <AddItem/>

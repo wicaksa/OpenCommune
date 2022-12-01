@@ -34,7 +34,7 @@ root.render(
         <Route path="/login" element={<Login />}  />
         <Route path="/signup" element={<SignUp />}  />
         <Route path="/mynetworks" element={<MyNetworks />} />
-        <Route path="/itemsinnetwork" element={<ItemsInNetwork />} />
+        <Route path="/itemsinnetwork/:networkid" element={<ItemsInNetwork />} />
         <Route path="/addItem" element={<AddItem />} />
         <Route path="/viewitem" element={<ViewItem />} />
       </Routes>
