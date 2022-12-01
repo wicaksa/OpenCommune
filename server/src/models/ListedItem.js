@@ -11,6 +11,10 @@ ListedItem.init({
     allowNull: false
 
   },
+  networkid:{
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
   itemname: {
     type: DataTypes.STRING,
     allowNull: false

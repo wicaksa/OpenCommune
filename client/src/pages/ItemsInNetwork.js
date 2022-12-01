@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import Banner from '../components/Banner';
 import ItemsTable from '../components/ItemsTable';
 import Navbar from '../components/Navbar';
@@ -8,6 +8,7 @@ import LogoutButton from '../components/LogoutButton';
 
 const ItemsInNetwork = () => {
     const[userid, setuserid] = useState(null);
+    const { networkid } = useParams();
 
     useEffect( () => {
         const loggedInUser = localStorage.getItem("userid");
@@ -23,10 +24,9 @@ const ItemsInNetwork = () => {
         return (
             <div>
                 <div>
-                    <LogoutButton/>
                     <Banner/>
                     <Navbar/>
-                    <ItemsTable/>
+                    <ItemsTable networkid={networkid} />
                 </div>
             </div>
         );

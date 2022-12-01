@@ -57,6 +57,17 @@ router.get("/search",async (req, res) => {
     }
 });
 
+router.post("/itemsinnetwork", async (req, res ) =>{
+    const {networkid} = req.body;
+    try {    
+        const result = await ListedItem.ListedItem.findAll({where: {networkid: networkid}})
+        console.log(result);
+        res.send(result)
+    } catch(e) {
+        console.log(e);
+    }
+});
+
 router.post("/create", async (req, res) => {
     let { itemname, category, information, price, location, image, userlisted } = req.body;
 

@@ -25,15 +25,7 @@ function App() {
         <NavbarHomePage/>
         <Outlet/>
       </div>
-      {/* <Routes>
-        <Route path="/login" element={<Login />}  />
-        <Route path="/signup" element={<SignUp />}  />
-        <Route path="/mynetworks" element={<MyNetworks />} />
-        <Route path="/itemsinnetwork" element={<ItemsInNetwork />} />
-        <Route path="/addItem" element={<AddItem />} />
-  </Routes>*/}
     </> 
-
     
   )
 }

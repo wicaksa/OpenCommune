@@ -23,10 +23,10 @@ const MyNetworks = () => {
         // Redirect
         <Navigate replace to = "/login" />;
     } else {
+        console.log(userid)
         return (
             <div>
                 <div>
-                    <LogoutButton />
                     <Banner />
                     <Navbar />  
                     <DisplayTable />
