@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from 'axios';
+import Banner from '../components/Banner';
+import NavbarHomePage from '../components/NavbarHomePage'
 
 const SignUp = () => {
     const [usernameReg, setUsernameReg] = useState('')
@@ -44,24 +46,22 @@ const SignUp = () => {
           });
           console.error(err);
         })
-        
     }
 
     return (
-        <div>
-        <h3>Sign up</h3>
-                <label>Username</label>
-                <input type="text" onChange={(e)=>{ setUsernameReg(e.target.value);}}/>
-                <label>Email</label>
-                <input type="text" onChange={(e)=>{ setEmailReg(e.target.value);}}/>
-                <label>Firstname</label>
-                <input type="text" onChange={(e)=>{ setFirstnameReg(e.target.value);}}/>
-                <label>Lastname</label>
-                <input type="text" onChange={(e)=>{ setLastnameReg(e.target.value);}}/>
-                <label>Password</label>
-                <input type="text" onChange={(e)=>{ setPasswordReg(e.target.value);}}/>
-                <button onClick={register}> Register </button>
+        <div className="App">
+            <Banner />
+            <NavbarHomePage />  
+            <div class="wrap">
+                <h3 style={{'textAlign':'center'}}>Registration</h3>
+                <input type="text" id="username" placeholder="ex:JSmith1876" onChange={(e)=>{ setUsernameReg(e.target.value);}}></input>
+                <input type="text" id="email" placeholder="johnsmith@yahoo.com" onChange={(e)=>{ setEmailReg(e.target.value);}}></input>
+                <input type="text" id="first_name" placeholder="John" onChange={(e)=>{ setFirstnameReg(e.target.value);}}></input>
+                <input type="text" id="last_name" placeholder="Smith" onChange={(e)=>{ setLastnameReg(e.target.value);}}></input>
+                <input type="text" id="password" placeholder="diDhnz87!" onChange={(e)=>{ setPasswordReg(e.target.value);}}></input>
+                <input type="submit" class="submit" id="register" value="Register" onClick={register}></input>
                 <ToastContainer autoClose={1500} /> 
+            </div>
         </div>
     )
 }
