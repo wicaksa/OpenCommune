@@ -1,6 +1,6 @@
 import React, {useState, setState } from 'react';
-import AddItem from './AddItem';
 import Axios from 'axios';
+import EditItem from './EditItem';
 
 class ItemsTable extends React.Component {
     constructor(props) {
@@ -13,14 +13,6 @@ class ItemsTable extends React.Component {
     }
 
     createItemList() {
-        // fetch("http://localhost:3001/listeditems/getallitems").then(
-        //     (response) => response.json()
-        // ).then((data) => {
-        //     console.log(data);
-        //     this.setState({
-        //         list:data
-        //     })
-        // })
         Axios.post('http://localhost:3001/listeditems/itemsinnetwork', {"networkid": this.props.networkid}).then(
             (response) =>{
                     console.log(response.data);
@@ -42,7 +34,7 @@ class ItemsTable extends React.Component {
                     <td>{items.price}</td>
                     <td>{items.location}</td>
                     <td>{items.image}</td>
-                    <td><button> Edit Item </button></td>
+                    <td><EditItem/></td>
                 </tr>
             )
         })
@@ -53,7 +45,11 @@ class ItemsTable extends React.Component {
                     <thread>
                         <tr>
                             <th>Items</th>
-                            <th><button onClick={AddItem.navigateToAddItem}>Add Item</button></th>
+                            <th>
+                                <a href="/addItem">
+                                    <button> Add Item </button>
+                                </a>
+                            </th>
                             <th></th>
                         </tr>
                         <tr>
