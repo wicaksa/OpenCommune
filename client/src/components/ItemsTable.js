@@ -1,6 +1,5 @@
 import React, {useState, setState } from 'react';
 import Axios from 'axios';
-import EditItem from './EditItem';
 
 class ItemsTable extends React.Component {
     constructor(props) {
@@ -10,6 +9,7 @@ class ItemsTable extends React.Component {
         }
         this.createItemList = this.createItemList.bind(this);
         this.createItemList();
+        
     }
 
     createItemList() {
@@ -20,11 +20,22 @@ class ItemsTable extends React.Component {
                         list:response.data
                     })
         })
-        
     }
 
     render() {
+        let loggedInUser = localStorage.getItem("userid") || "";
+        let userMatch = false;
+
         let tableData = this.state.list.map((items) => {
+            let ulisted = JSON.stringify(items.userlisted);
+
+            if (loggedInUser == ulisted) {
+                userMatch = true;
+            }
+            if (loggedInUser != ulisted) {
+                userMatch = false;
+            }
+           
             return(
                 <tr key={items.itemid}>
                     <td>{items.itemid}</td>
@@ -34,7 +45,8 @@ class ItemsTable extends React.Component {
                     <td>{items.price}</td>
                     <td>{items.location}</td>
                     <td>{items.image}</td>
-                    <td><EditItem/></td>
+                    
+                    {userMatch ? (<button> Edit Item </button>) : (<></>)}
                 </tr>
             )
         })
