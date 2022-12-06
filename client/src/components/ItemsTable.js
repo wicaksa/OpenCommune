@@ -49,8 +49,7 @@ class ItemsTable extends React.Component {
                             View Item
                         </Link>
                     </td>
-                    
-                    {userMatch ? (<button> Edit Item </button>) : (<></>)}
+                    <td>{userMatch ? (<a href="/edit"><button> Edit Item </button></a>) : (<></>)}</td>
                 </tr>
             )
         })
