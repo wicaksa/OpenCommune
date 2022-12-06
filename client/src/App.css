@@ -48,3 +48,19 @@ li a {
 li a:hover {
   background-color: #111;
 }
+
+.viewfromlisttable {
+  border: 1px solid black;
+  border-radius: 10px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+}
+
+.viewfromlistbutton {
+  margin-top: 10px;
+  border: 2px solid black;
+  border-radius: 8px;
+  background-color: #d5dae3;
+}

@@ -1,6 +1,6 @@
 import React, {useState, setState } from 'react';
-import AddItem from './AddItem';
 import Axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class ItemsTable extends React.Component {
     constructor(props) {
@@ -10,17 +10,10 @@ class ItemsTable extends React.Component {
         }
         this.createItemList = this.createItemList.bind(this);
         this.createItemList();
+        
     }
 
     createItemList() {
-        // fetch("http://localhost:3001/listeditems/getallitems").then(
-        //     (response) => response.json()
-        // ).then((data) => {
-        //     console.log(data);
-        //     this.setState({
-        //         list:data
-        //     })
-        // })
         Axios.post('http://localhost:3001/listeditems/itemsinnetwork', {"networkid": this.props.networkid}).then(
             (response) =>{
                     console.log(response.data);
@@ -28,11 +21,22 @@ class ItemsTable extends React.Component {
                         list:response.data
                     })
         })
-        
     }
 
     render() {
+        let loggedInUser = localStorage.getItem("userid") || "";
+        let userMatch = false;
+
         let tableData = this.state.list.map((items) => {
+            let ulisted = JSON.stringify(items.userlisted);
+
+            if (loggedInUser === ulisted) {
+                userMatch = true;
+            }
+            if (loggedInUser !== ulisted) {
+                userMatch = false;
+            }
+           
             return(
                 <tr key={items.itemid}>
                     <td>{items.itemid}</td>
@@ -41,8 +45,11 @@ class ItemsTable extends React.Component {
                     <td>{items.information}</td>
                     <td>{items.price}</td>
                     <td>{items.location}</td>
-                    <td>{items.image}</td>
-                    <td><button> Edit Item </button></td>
+                    <td><Link to="/viewfromlist" state={{state: items}}>
+                            View Item
+                        </Link>
+                    </td>
+                    <td>{userMatch ? (<a href="/edit"><button> Edit Item </button></a>) : (<></>)}</td>
                 </tr>
             )
         })
@@ -53,7 +60,11 @@ class ItemsTable extends React.Component {
                     <thread>
                         <tr>
                             <th>Items</th>
-                            <th><button onClick={AddItem.navigateToAddItem}>Add Item</button></th>
+                            <th>
+                                <a href="/addItem">
+                                    <button> Add Item </button>
+                                </a>
+                            </th>
                             <th></th>
                         </tr>
                         <tr>

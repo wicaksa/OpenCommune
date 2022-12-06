@@ -3,9 +3,9 @@ import React, { useState, setState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import Banner from './Banner.js';
-import Navbar from './Navbar';
+import Navbar from './Navbar.js';
 
-export default function AddItem() {
+export default function EditItem() {
     const [itemname, setItemName] = useState('');
     const [category, setCategory] = useState('');
     const [information, setInformation] = useState('');
@@ -13,28 +13,6 @@ export default function AddItem() {
     const [location, setLocation] = useState('');
     const [image, setImage] = useState('');
     const [userlisted, setUserListed] = useState('');
-
-    const addItem = () => {
-        Axios.post('listedItems/create', {
-            "itemname" : itemname,
-            "category" : category,
-            "information" : information,
-            "price" : price,
-            "location" : location,
-            "image" : image,
-            "userlisted" : userlisted
-        }).then((response) => {
-            if (response.status === 200) {
-                toast.success(response.data, {
-                    position: toast.POSITION.TOP_CENTER
-                });
-            } else {
-                toast.error("Unable to add item", {
-                    position: toast.POSITION.TOP_CENTER
-                });
-            }
-        })
-    }
 
     return (
         <>
@@ -45,7 +23,7 @@ export default function AddItem() {
         <div className='container'>
             <table className='table table-striped'>
                 <tbody>
-                    <th>Add Item</th>
+                    <th>Edit Item</th>
                     <tr>
                         <th>Item Name</th>
                         <th><input class="form-control form-control-sm" placeholder="Item Name" onChange={(e)=>{setItemName(e.target.value);}}></input></th>
@@ -67,7 +45,7 @@ export default function AddItem() {
                         <th><input class="form-control form-control-sm" placeholder="Location" onChange={(e)=>{setLocation(e.target.value);}}></input></th>
                     </tr>
                     <tr>
-                        <button onClick={addItem}>Submit</button>
+                        <button>Submit</button>
                     </tr>
                 </tbody>
             </table>
