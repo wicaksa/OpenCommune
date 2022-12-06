@@ -1,5 +1,6 @@
 import React, {useState, setState } from 'react';
 import Axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class ItemsTable extends React.Component {
     constructor(props) {
@@ -29,10 +30,10 @@ class ItemsTable extends React.Component {
         let tableData = this.state.list.map((items) => {
             let ulisted = JSON.stringify(items.userlisted);
 
-            if (loggedInUser == ulisted) {
+            if (loggedInUser === ulisted) {
                 userMatch = true;
             }
-            if (loggedInUser != ulisted) {
+            if (loggedInUser !== ulisted) {
                 userMatch = false;
             }
            
@@ -44,7 +45,10 @@ class ItemsTable extends React.Component {
                     <td>{items.information}</td>
                     <td>{items.price}</td>
                     <td>{items.location}</td>
-                    <td>{items.image}</td>
+                    <td><Link to="/viewfromlist" state={{state: items}}>
+                            View Item
+                        </Link>
+                    </td>
                     
                     {userMatch ? (<button> Edit Item </button>) : (<></>)}
                 </tr>

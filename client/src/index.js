@@ -11,6 +11,7 @@ import ItemsInNetwork from './pages/ItemsInNetwork';
 import AddItem from './components/AddItem';
 import ViewItem from './components/ViewItem';
 import FrontPage from './pages/FrontPage';
+import ViewFromList from './components/ViewFromList';
 const axios = require('axios');
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -37,6 +38,7 @@ root.render(
         <Route path="/itemsinnetwork/:networkid" element={<ItemsInNetwork />} />
         <Route path="/addItem" element={<AddItem />} />
         <Route path="/viewitem" element={<ViewItem />} />
+        <Route path="/viewfromlist" element={<ViewFromList />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

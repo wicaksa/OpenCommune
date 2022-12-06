@@ -2,6 +2,8 @@ import Axios from '../axios.js';
 import React, { useState, setState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import Banner from './Banner.js';
+import Navbar from './Navbar';
 
 export default function AddItem() {
     const [itemname, setItemName] = useState('');
@@ -35,6 +37,11 @@ export default function AddItem() {
     }
 
     return (
+        <>
+        <div>
+            <Banner />
+            <Navbar />
+        </div>
         <div className='container'>
             <table className='table table-striped'>
                 <tbody>
@@ -69,5 +76,6 @@ export default function AddItem() {
                 </tbody>
             </table>
         </div>
+        </>
     )
 }
