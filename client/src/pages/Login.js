@@ -54,7 +54,6 @@ const Login = () => {
                 <input type="text" id="username" placeholder="Username" onChange={(e)=>{ setUsernameReg(e.target.value);}}></input>
                 <input type="password" id="password" placeholder="Password" onChange={(e)=>{ setPasswordReg(e.target.value);}}></input>
                 <input type="submit" class="submit" id="login" value="Login" onClick={login}></input>
-           
         </div>
     </div>
     );
