@@ -8,7 +8,7 @@ Cheuk On Yim <br />
 Wicaksa Munajat <br />
 
 # Tech Stack
-Back End: Node.js, Express, Passport.js (authentication) <br />
+Back End: Node.js, Express <br />
 Front End: React. <br />
 Other: GitHub, VSCode. 
 
